@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@gapur/react-native-accordion": "^1.0.7",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "native-base": "^3.4.25",
