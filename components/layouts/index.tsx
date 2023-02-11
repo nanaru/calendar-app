@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'screens/HomeScreen';
 import NewTrainingMenuFormScreen from 'screens/NewTrainingMenuFormScreen';
+import EditTrainingMenuFormScreen from 'screens/EditTrainingMenuFormScreen';
 import { RootStackParamList } from 'constants/rootStackParamList';
 
 const Layout = () => {
@@ -26,6 +27,11 @@ const Layout = () => {
                 name='NewTrainingMenuForm'
                 component={NewTrainingMenuFormScreen}
                 options={{ headerTitle: 'トレーニング追加' }}
+              />
+              <Stack.Screen
+                name='EditTrainingMenuForm'
+                component={EditTrainingMenuFormScreen}
+                options={{ headerTitle: 'トレーニング編集' }}
               />
             </Stack.Navigator>
           </NavigationContainer>

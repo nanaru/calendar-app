@@ -161,7 +161,7 @@ const Home = () => {
               title={item.title}
               subTitle={item.subTitle}
               content={item.content}
-              editTrainingMenuButtonOnPress={() => console.log('edit button click')}
+              editTrainingMenuButtonOnPress={() => navigation.navigate('EditTrainingMenuForm')}
               deleteTrainingMenuButtonOnPress={() => console.log('delete button click')}
             />
           </TouchableOpacity>
