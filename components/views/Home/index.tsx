@@ -5,6 +5,10 @@ import { ListItem, Icon } from '@rneui/themed';
 import { HStack, VStack } from 'native-base';
 import EditTrainingMenuButton from 'components/parts/EditTrainingMenuButton';
 import DeleteTrainingMenuButton from 'components/parts/DeleteTrainingMenuButton';
+import OpenNewTrainingMenuFormButton from 'components/parts/OpenNewTrainingMenuFormButton';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from 'constants/rootStackParamList';
 
 export type AgendaEntry = {
   title: string;
@@ -106,9 +110,22 @@ const AccordionListItem: FC<Props> = ({
 };
 
 const Home = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
   // TODO APIからレスポンスした結果を格納する
   const [items, setItems] = useState<{ [key: string]: AgendaEntry[] }>({
     '2023-02-11': [
+      {
+        title: 'ダンベルローイング',
+        subTitle: '3セット / ボリューム 1,080.10kg / 1RM 75kg',
+        content: `■ 記録${'\n\n'}1セット目 10kg 2reps${'\n'}2セット目 10kg 2reps${'\n'}3セット目 10kg 2reps${'\n\n\n'}■ メモ${'\n\n'}メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ`,
+        iconPath: 'open-in-full',
+      },
+      {
+        title: 'ダンベルローイング',
+        subTitle: '3セット / ボリューム 1,080.10kg / 1RM 75kg',
+        content: `■ 記録${'\n\n'}1セット目 10kg 2reps${'\n'}2セット目 10kg 2reps${'\n'}3セット目 10kg 2reps${'\n\n\n'}■ メモ${'\n\n'}メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ`,
+        iconPath: 'open-in-full',
+      },
       {
         title: 'ダンベルローイング',
         subTitle: '3セット / ボリューム 1,080.10kg / 1RM 75kg',
@@ -131,28 +148,33 @@ const Home = () => {
   });
 
   return (
-    <Agenda
-      monthFormat={'yyyy年 M月'}
-      // NOTE: items,renderItemで任意のプロパティを渡せないためエラーが出るが無視する
-      items={items}
-      renderItem={(item: AgendaEntry, isFirst) => (
-        <TouchableOpacity style={styles.item}>
-          <AccordionListItem
-            iconPath={item.iconPath}
-            title={item.title}
-            subTitle={item.subTitle}
-            content={item.content}
-            editTrainingMenuButtonOnPress={() => console.log('edit button click')}
-            deleteTrainingMenuButtonOnPress={() => console.log('delete button click')}
-          />
-        </TouchableOpacity>
-      )}
-      showOnlySelectedDayItems={true}
-      renderDay={(day, item) => {
-        // 日付を表示させないための処理
-        return <View />;
-      }}
-    />
+    <>
+      {/* カレンダー */}
+      <Agenda
+        monthFormat={'yyyy年 M月'}
+        // NOTE: items,renderItemで任意のプロパティを渡せないためエラーが出るが無視する
+        items={items}
+        renderItem={(item: AgendaEntry, isFirst) => (
+          <TouchableOpacity style={styles.item}>
+            <AccordionListItem
+              iconPath={item.iconPath}
+              title={item.title}
+              subTitle={item.subTitle}
+              content={item.content}
+              editTrainingMenuButtonOnPress={() => console.log('edit button click')}
+              deleteTrainingMenuButtonOnPress={() => console.log('delete button click')}
+            />
+          </TouchableOpacity>
+        )}
+        showOnlySelectedDayItems={true}
+        renderDay={(day, item) => {
+          // 日付を表示させないための処理
+          return <View />;
+        }}
+      />
+      {/* トレーニング追加画面表示ボタン */}
+      <OpenNewTrainingMenuFormButton onPress={() => navigation.navigate('NewTrainingMenuForm')} />
+    </>
   );
 };
 
