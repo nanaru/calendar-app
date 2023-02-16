@@ -7,6 +7,9 @@ import HomeScreen from 'screens/HomeScreen';
 import NewTrainingMenuFormScreen from 'screens/NewTrainingMenuFormScreen';
 import EditTrainingMenuFormScreen from 'screens/EditTrainingMenuFormScreen';
 import { RootStackParamList } from 'constants/rootStackParamList';
+import { initializeFirebase } from '../../.env';
+
+initializeFirebase();
 
 const Layout = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
