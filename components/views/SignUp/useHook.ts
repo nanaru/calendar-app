@@ -23,8 +23,10 @@ const useHooks = () => {
     try {
       const user = await createUserWithEmailAndPassword(auth(), email, password);
       console.log(user);
-    } catch (error) {
-      console.log(error.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        console.error(e.message);
+      }
     }
   };
 
