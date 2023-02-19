@@ -4,6 +4,8 @@ import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'screens/HomeScreen';
+import SignInScreen from 'screens/SignInScreen';
+import SignUpScreen from 'screens/SignUpScreen';
 import NewTrainingMenuFormScreen from 'screens/NewTrainingMenuFormScreen';
 import EditTrainingMenuFormScreen from 'screens/EditTrainingMenuFormScreen';
 import { RootStackParamList } from 'constants/rootStackParamList';
@@ -20,7 +22,17 @@ const Layout = () => {
         <View style={{ height: '100%' }}>
           {/* ルーティング */}
           <NavigationContainer>
-            <Stack.Navigator initialRouteName='Home'>
+            <Stack.Navigator initialRouteName='SignIn'>
+              <Stack.Screen
+                name='SignIn'
+                component={SignInScreen}
+                options={{ headerTitle: 'ログイン' }}
+              />
+              <Stack.Screen
+                name='SignUp'
+                component={SignUpScreen}
+                options={{ headerTitle: '新規登録' }}
+              />
               <Stack.Screen
                 name='Home'
                 component={HomeScreen}

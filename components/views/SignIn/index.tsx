@@ -8,46 +8,45 @@ import {
   Input,
   Link,
   Button,
-  Image,
   HStack,
   Text,
+  Image,
 } from 'native-base';
 import useHooks from './useHook';
-
-const SignUp = () => {
+const SignIn = () => {
   const {
     email,
     password,
-    handleRegister,
+    handleSignIn,
     handleChangeInEmail,
     handleChangeInPassword,
-    handleLinkToSignIn,
+    handleLinkToSignUp,
   } = useHooks();
-
   return (
     <Center w='100%'>
-      <Box safeArea p='2' w='90%' maxW='290' py='6'>
+      <Box safeArea p='2' py='6' w='90%' maxW='290'>
         <Heading
           size='lg'
+          fontWeight='600'
           color='coolGray.800'
           _dark={{
             color: 'warmGray.50',
           }}
-          fontWeight='semibold'
         >
           筋トレカレンダー
         </Heading>
         <Heading
           mt='1'
-          color='coolGray.600'
           _dark={{
             color: 'warmGray.200',
           }}
+          color='coolGray.600'
           fontWeight='medium'
           size='xs'
         >
-          Sign up to continue!
+          Sign in to continue!
         </Heading>
+
         <VStack space={3} mt='5'>
           <FormControl>
             <FormControl.Label>メールアドレス</FormControl.Label>
@@ -67,9 +66,20 @@ const SignUp = () => {
               }}
               value={password}
             />
+            <Link
+              _text={{
+                fontSize: 'xs',
+                fontWeight: '500',
+                color: 'indigo.500',
+              }}
+              alignSelf='flex-end'
+              mt='1'
+            >
+              パスワード忘れた方はこちら
+            </Link>
           </FormControl>
-          <Button mt='2' bg='rose.400' onPress={handleRegister}>
-            Sign up
+          <Button mt='2' bg='rose.400' onPress={handleSignIn}>
+            Sign in
           </Button>
           <HStack mt='6' justifyContent='center'>
             <Text
@@ -79,7 +89,7 @@ const SignUp = () => {
                 color: 'warmGray.200',
               }}
             >
-              ログインは
+              新規登録は
             </Text>
             <Link
               _text={{
@@ -87,7 +97,7 @@ const SignUp = () => {
                 fontWeight: 'medium',
                 fontSize: 'sm',
               }}
-              onPress={handleLinkToSignIn}
+              onPress={handleLinkToSignUp}
             >
               こちら
             </Link>
@@ -98,4 +108,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
