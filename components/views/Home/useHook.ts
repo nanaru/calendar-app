@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, getFirestore, getDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, getDoc, doc, deleteDoc } from 'firebase/firestore';
 import { AgendaSchedule } from 'constants/AgendaSchedule';
 import { AgendaEntry } from 'constants/AgendaEntry';
 import { TrainingMenu } from 'constants/TrainingMenu';
@@ -133,6 +133,29 @@ const useHooks = () => {
     return content;
   };
 
+  // トレーニングメニューを削除する
+  const deleteTrainingMenu = (date: string, docId: string) => {
+    const currentUser = auth().currentUser;
+    if (currentUser === null) {
+      return;
+    }
+    // firebaseから削除する
+    const firestore = getFirestore();
+    const docRef = doc(
+      firestore,
+      `/users/${currentUser.uid}/training_histories/${date}/menus/${docId}`,
+    );
+    deleteDoc(docRef);
+
+    // stateから削除する
+    const resizedAgendaSchedule = agendaSchedule[date].filter((agenda) => {
+      if (agenda.docId !== docId) return agenda;
+    });
+
+    setAgendaSchedule((agendaSchedule) => {
+      return { ...agendaSchedule, [date]: resizedAgendaSchedule };
+    });
+  };
   useEffect(() => {
     (async () => {
       await fetchTrainingMenuKinds();
@@ -147,6 +170,7 @@ const useHooks = () => {
     setDate,
     trainingDicInSelectBox,
     fetchTrainingSummaries,
+    deleteTrainingMenu,
   };
 };
 

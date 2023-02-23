@@ -4,9 +4,10 @@ import { Button } from '@rneui/themed';
 
 export type Props = {
   onPress: (e: GestureResponderEvent) => void;
+  onPressOut: (e: GestureResponderEvent) => void;
 };
 
-const DeleteTrainingMenuButton: FC<Props> = ({ onPress }) => {
+const DeleteTrainingMenuButton: FC<Props> = ({ onPress, onPressOut }) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -19,6 +20,7 @@ const DeleteTrainingMenuButton: FC<Props> = ({ onPress }) => {
     <Button
       title='Delete'
       onPress={onPress}
+      onPressOut={onPressOut}
       icon={{ name: 'delete', color: 'white' }}
       buttonStyle={styles.container}
     />

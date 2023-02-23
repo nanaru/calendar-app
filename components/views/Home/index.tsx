@@ -82,7 +82,7 @@ const AccordionListItem: FC<Props> = ({
         <EditTrainingMenuButton onPress={editTrainingMenuButtonOnPress} onPressOut={reset} />
       )}
       rightContent={(reset) => (
-        <DeleteTrainingMenuButton onPress={deleteTrainingMenuButtonOnPress} />
+        <DeleteTrainingMenuButton onPress={deleteTrainingMenuButtonOnPress} onPressOut={reset} />
       )}
     >
       <ListItem.Content>
@@ -117,6 +117,7 @@ const Home = () => {
     setDate,
     trainingDicInSelectBox,
     fetchTrainingSummaries,
+    deleteTrainingMenu,
   } = useHooks();
 
   return (
@@ -140,7 +141,7 @@ const Home = () => {
                     trainingDicInSelectBox: trainingDicInSelectBox,
                   })
                 }
-                deleteTrainingMenuButtonOnPress={() => console.log('delete button click')}
+                deleteTrainingMenuButtonOnPress={() => deleteTrainingMenu(item.date, item.docId)}
               />
             </TouchableOpacity>
           )}
