@@ -37,6 +37,8 @@ const TrainingSetAndRepList: FC<Props> = ({ sets, handleInputInWeight, handleInp
         <TrainingSetAndRepItemInput
           key={index}
           setNumber={index + 1}
+          weight={sets[index].weight !== 0 ? sets[index].weight : undefined}
+          reps={sets[index].reps !== 0 ? sets[index].reps : undefined}
           handleInputInWeight={handleInputInWeight}
           handleInputInRep={handleInputInRep}
         />,

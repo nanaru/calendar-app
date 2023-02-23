@@ -3,6 +3,7 @@ import { StyleSheet, GestureResponderEvent, Text, TouchableOpacity, View } from 
 import { LocaleConfig, Agenda } from 'react-native-calendars';
 import { ListItem, Icon } from '@rneui/themed';
 import { HStack, VStack } from 'native-base';
+import { AgendaEntry } from 'constants/AgendaEntry';
 import EditTrainingMenuButton from 'components/parts/EditTrainingMenuButton';
 import DeleteTrainingMenuButton from 'components/parts/DeleteTrainingMenuButton';
 import OpenNewTrainingMenuFormButton from 'components/parts/OpenNewTrainingMenuFormButton';
@@ -10,13 +11,6 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
 import useHooks from './useHook';
-
-export type AgendaEntry = {
-  title: string;
-  subTitle: string;
-  iconPath: string;
-  content: string;
-};
 
 export type Props = {
   iconPath: string;
@@ -84,8 +78,12 @@ const AccordionListItem: FC<Props> = ({
   const [expanded, setExpanded] = useState(false);
   return (
     <ListItem.Swipeable
-      leftContent={() => <EditTrainingMenuButton onPress={editTrainingMenuButtonOnPress} />}
-      rightContent={() => <DeleteTrainingMenuButton onPress={deleteTrainingMenuButtonOnPress} />}
+      leftContent={(reset) => (
+        <EditTrainingMenuButton onPress={editTrainingMenuButtonOnPress} onPressOut={reset} />
+      )}
+      rightContent={(reset) => (
+        <DeleteTrainingMenuButton onPress={deleteTrainingMenuButtonOnPress} />
+      )}
     >
       <ListItem.Content>
         <ListItem.Accordion
@@ -136,7 +134,12 @@ const Home = () => {
                 title={item.title}
                 subTitle={item.subTitle}
                 content={item.content}
-                editTrainingMenuButtonOnPress={() => navigation.navigate('EditTrainingMenuForm')}
+                editTrainingMenuButtonOnPress={() =>
+                  navigation.navigate('EditTrainingMenuForm', {
+                    agenda: item,
+                    trainingDicInSelectBox: trainingDicInSelectBox,
+                  })
+                }
                 deleteTrainingMenuButtonOnPress={() => console.log('delete button click')}
               />
             </TouchableOpacity>

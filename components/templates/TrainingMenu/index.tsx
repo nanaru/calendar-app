@@ -4,11 +4,16 @@ import { FormControl, Select, CheckIcon } from 'native-base';
 import { TrainingMenuKindsInSelectBox } from 'constants/TrainingMenuKind';
 
 export type Props = {
+  selectedItem?: string;
   trainingDicInSelectBox: TrainingMenuKindsInSelectBox[];
   handleChangeInTrainingMenu: (itemValue: string) => void;
 };
 
-const TrainingMenu: FC<Props> = ({ trainingDicInSelectBox, handleChangeInTrainingMenu }) => {
+const TrainingMenu: FC<Props> = ({
+  selectedItem,
+  trainingDicInSelectBox,
+  handleChangeInTrainingMenu,
+}) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -36,6 +41,7 @@ const TrainingMenu: FC<Props> = ({ trainingDicInSelectBox, handleChangeInTrainin
         _selectedItem={{
           endIcon: <CheckIcon size='5' color='rose.400' />,
         }}
+        selectedValue={selectedItem}
         onValueChange={(itemValue) => handleChangeInTrainingMenu(itemValue)}
         variant='unstyled'
         style={styles.selectInput}

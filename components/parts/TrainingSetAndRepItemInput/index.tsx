@@ -4,12 +4,16 @@ import { Input, InputGroup, Stack, InputLeftAddon, InputRightAddon } from 'nativ
 
 export type Props = {
   setNumber: number;
+  weight?: number;
+  reps?: number;
   handleInputInWeight: (inputValue: number, key: number) => void;
   handleInputInRep: (inputValue: number, key: number) => void;
 };
 
 const TrainingSetAndRepItemInput: FC<Props> = ({
   setNumber,
+  weight,
+  reps,
   handleInputInWeight,
   handleInputInRep,
 }) => {
@@ -41,6 +45,7 @@ const TrainingSetAndRepItemInput: FC<Props> = ({
             base: '30%',
             md: '100%',
           }}
+          value={weight?.toString()}
           variant='unstyled'
           style={styles.input}
           keyboardType='numeric'
@@ -54,6 +59,7 @@ const TrainingSetAndRepItemInput: FC<Props> = ({
             base: '30%',
             md: '100%',
           }}
+          value={reps?.toString()}
           variant='unstyled'
           style={styles.input}
           keyboardType='numeric'

@@ -4,9 +4,10 @@ import { Button } from '@rneui/themed';
 
 export type Props = {
   onPress: (e: GestureResponderEvent) => void;
+  onPressOut: (e: GestureResponderEvent) => void;
 };
 
-const EditTrainingMenuButton: FC<Props> = ({ onPress }) => {
+const EditTrainingMenuButton: FC<Props> = ({ onPress, onPressOut }) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -19,6 +20,7 @@ const EditTrainingMenuButton: FC<Props> = ({ onPress }) => {
     <Button
       title='Edit'
       onPress={onPress}
+      onPressOut={onPressOut}
       icon={{ name: 'edit', color: 'white' }}
       buttonStyle={styles.container}
     />

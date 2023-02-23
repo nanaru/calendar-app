@@ -5,10 +5,11 @@ import DatePicker from '@react-native-community/datetimepicker';
 
 export type Props = {
   date: string;
-  handleChangeInDate: (inputValue: Date) => void;
+  disabled: boolean;
+  handleChangeInDate?: (inputValue: Date) => void;
 };
 
-const TrainingDate: FC<Props> = ({ date, handleChangeInDate }) => {
+const TrainingDate: FC<Props> = ({ date, disabled, handleChangeInDate }) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -28,6 +29,7 @@ const TrainingDate: FC<Props> = ({ date, handleChangeInDate }) => {
       <FormControl.Label>■ 日付</FormControl.Label>
       <DatePicker
         value={new Date(date)}
+        disabled={disabled}
         mode='date'
         display='inline'
         locale='ja'
@@ -35,7 +37,7 @@ const TrainingDate: FC<Props> = ({ date, handleChangeInDate }) => {
         minimumDate={new Date(2000, 1, 1)}
         maximumDate={new Date(2099, 1, 1)}
         onChange={(_event, date?: Date) => {
-          if (date !== undefined) {
+          if (date !== undefined && handleChangeInDate !== undefined) {
             handleChangeInDate(date);
           }
         }}

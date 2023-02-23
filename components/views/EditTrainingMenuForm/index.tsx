@@ -9,13 +9,12 @@ import ResistTrainingMenuFormButton from 'components/parts/ResistTrainingMenuFor
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import useHooks from './useHook';
 
-const NewTrainingMenuForm = () => {
+const EditTrainingMenuForm = () => {
   const {
     date,
     isValidQuery,
     trainingMenu,
     trainingDicInSelectBox,
-    handleChangeInTrainingDate,
     handleChangeInTrainingMenu,
     handleInputInWeight,
     handleInputInRep,
@@ -31,15 +30,12 @@ const NewTrainingMenuForm = () => {
         <Center w='100%'>
           <Box mt='4' w='100%'>
             {/* 日付 */}
-            <TrainingDate
-              date={date}
-              disabled={false}
-              handleChangeInDate={handleChangeInTrainingDate}
-            />
+            <TrainingDate date={date} disabled={true} />
           </Box>
           <Box mt='4' w='100%'>
             {/* 種目名 */}
             <TrainingMenu
+              selectedItem={trainingMenu.menu_id}
               trainingDicInSelectBox={trainingDicInSelectBox}
               handleChangeInTrainingMenu={handleChangeInTrainingMenu}
             />
@@ -66,4 +62,4 @@ const NewTrainingMenuForm = () => {
     </>
   );
 };
-export default NewTrainingMenuForm;
+export default EditTrainingMenuForm;

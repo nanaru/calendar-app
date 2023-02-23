@@ -5,14 +5,19 @@ import { AgendaEntry } from 'constants/AgendaEntry';
 import { TrainingMenu } from 'constants/TrainingMenu';
 import { TrainingMenuKind, TrainingMenuKindsInSelectBox } from 'constants/TrainingMenuKind';
 import { Set } from 'constants/Set';
+import { useRoute, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from 'constants/rootStackParamList';
 import { auth } from '../../../.env';
 import { RmKind, RmPoint } from 'constants/RmKind';
 import { toHyphenDateFormat } from 'constants/util';
 
 const useHooks = () => {
+  const route = useRoute<RouteProp<RootStackParamList, 'Home'>>();
   const [agendaSchedule, setAgendaSchedule] = useState<AgendaSchedule>({});
   const [isValidQuery, setIsValidQuery] = useState(false);
-  const [date, setDate] = useState(toHyphenDateFormat(new Date()));
+  const [date, setDate] = useState(
+    route.params?.date !== undefined ? route.params.date : toHyphenDateFormat(new Date()),
+  );
   const [fetchedMonthList, setFetchedMonthList] = useState<string[]>([]);
   const [trainingDicInSelectBox, setTrainingDicInSelectBox] = useState<
     TrainingMenuKindsInSelectBox[]
@@ -71,10 +76,13 @@ const useHooks = () => {
         const trainigMenuKind = trainingMenuDoc.data() as unknown as TrainingMenuKind;
 
         agendaEntries.push({
+          docId: menuDoc.id,
+          date: formatedDay,
           title: trainigMenuKind.name,
           subTitle: setMenuSubTitle(menu.set, trainigMenuKind.rm_kind),
           content: setMenuContent(menu.set, menu.memo),
           iconPath: trainigMenuKind.path,
+          trainingMenu: menu,
         });
       }
       setAgendaSchedule((agendaSchedule) => {
@@ -108,7 +116,7 @@ const useHooks = () => {
     let rm = 0;
     if (rmKind !== undefined) {
       rm = Math.floor(maxVolume / RmPoint(rmKind) + maxWeight);
-      subTitle += ` / 1RM ${rm}kg`;
+      subTitle += ` / 1RM ${rm.toFixed(1)}kg`;
     }
     return subTitle;
   };

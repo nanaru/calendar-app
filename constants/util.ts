@@ -1,9 +1,9 @@
 import { Set } from 'constants/Set';
 import { DEFALUT_SET_COUNTS } from './const';
 
-export const setDefaulSetAndRepList = () => {
+export const setDefaulSetAndRepList = (startIndex: number = 0) => {
   const list = new Array<Set>();
-  for (let index = 0; index < DEFALUT_SET_COUNTS; index++) {
+  for (let index = startIndex; index < DEFALUT_SET_COUNTS; index++) {
     list.push({
       reps: 0,
       weight: 0,

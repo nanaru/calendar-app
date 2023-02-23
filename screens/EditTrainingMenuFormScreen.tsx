@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { StyleSheet, GestureResponderEvent, Text, TouchableOpacity, View } from 'react-native';
+import EditTrainingMenuForm from 'components/views/EditTrainingMenuForm';
+
 const EditTrainingMenuFormScreen: FC = () => {
-  return <Text>サンプル</Text>;
+  return <EditTrainingMenuForm />;
 };
 
 export default EditTrainingMenuFormScreen;
