@@ -81,7 +81,7 @@ const useHooks = () => {
           title: trainigMenuKind.name,
           subTitle: setMenuSubTitle(menu.set, trainigMenuKind.rm_kind),
           content: setMenuContent(menu.set, menu.memo),
-          iconPath: trainigMenuKind.path,
+          color: trainigMenuKind.color,
           trainingMenu: menu,
         });
       }

@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { StyleSheet, GestureResponderEvent, Text, TouchableOpacity, View } from 'react-native';
 import { LocaleConfig, Agenda } from 'react-native-calendars';
-import { ListItem, Icon } from '@rneui/themed';
-import { HStack, VStack } from 'native-base';
+import { ListItem } from '@rneui/themed';
+import { HStack, VStack, Avatar } from 'native-base';
 import { AgendaEntry } from 'constants/AgendaEntry';
 import EditTrainingMenuButton from 'components/parts/EditTrainingMenuButton';
 import DeleteTrainingMenuButton from 'components/parts/DeleteTrainingMenuButton';
@@ -13,7 +13,7 @@ import { RootStackParamList } from 'constants/rootStackParamList';
 import useHooks from './useHook';
 
 export type Props = {
-  iconPath: string;
+  color: string;
   title: string;
   subTitle: string;
   content: string;
@@ -68,7 +68,7 @@ LocaleConfig.locales.jp = {
 LocaleConfig.defaultLocale = 'jp';
 
 const AccordionListItem: FC<Props> = ({
-  iconPath,
+  color,
   title,
   subTitle,
   content,
@@ -89,7 +89,7 @@ const AccordionListItem: FC<Props> = ({
         <ListItem.Accordion
           content={
             <HStack space={4} justifyContent='space-around' alignItems='center'>
-              <Icon name={iconPath} size={30} />
+              <Avatar bg={color} size={6} borderRadius={4} />
               <VStack space={1} justifyContent='start'>
                 <ListItem.Title>{title}</ListItem.Title>
                 <ListItem.Subtitle style={styles.subTitle}>{subTitle}</ListItem.Subtitle>
@@ -131,7 +131,7 @@ const Home = () => {
           renderItem={(item: AgendaEntry, isFirst) => (
             <TouchableOpacity style={styles.item}>
               <AccordionListItem
-                iconPath={item.iconPath}
+                color={item.color}
                 title={item.title}
                 subTitle={item.subTitle}
                 content={item.content}

@@ -5,7 +5,7 @@ export type AgendaEntry = {
   date: string;
   title: string;
   subTitle: string;
-  iconPath: string;
+  color: string;
   content: string;
   trainingMenu: TrainingMenu;
 };
