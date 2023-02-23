@@ -95,7 +95,7 @@ const useHooks = () => {
       set: resizedSets,
     });
     setIsValidQuery(false);
-    navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
+    navigation.reset({ index: 0, routes: [{ name: 'Home', params: { date: date } }] });
   };
 
   return {
