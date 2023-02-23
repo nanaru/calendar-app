@@ -1,8 +1,7 @@
 import { Set } from './Set';
-import { DocumentReference } from 'firebase/firestore';
 
 export type TrainingMenu = {
-  menu_id: DocumentReference<unknown>;
+  menu_id: string;
   memo: string;
   sort_at: number;
   set: Set[];

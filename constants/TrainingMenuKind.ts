@@ -6,3 +6,8 @@ export type TrainingMenuKind = {
   path: string;
   rm_kind?: RmKind;
 };
+
+export type TrainingMenuKindsInSelectBox = {
+  docId: string;
+  trainingMenuKind: TrainingMenuKind;
+};

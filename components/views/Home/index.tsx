@@ -112,7 +112,14 @@ const AccordionListItem: FC<Props> = ({
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
-  const { agendaSchedule, isValidQuery } = useHooks();
+  const {
+    agendaSchedule,
+    isValidQuery,
+    date,
+    setDate,
+    trainingDicInSelectBox,
+    fetchTrainingSummaries,
+  } = useHooks();
 
   return (
     <>
@@ -134,16 +141,30 @@ const Home = () => {
               />
             </TouchableOpacity>
           )}
+          selected={date}
           refreshing={true}
           showOnlySelectedDayItems={true}
           renderDay={(day, item) => {
             // 日付を表示させないための処理
             return <View />;
           }}
+          loadItemsForMonth={(month) => {
+            fetchTrainingSummaries(month.year, month.month);
+          }}
+          onDayPress={(day) => {
+            setDate(day.dateString);
+          }}
         />
       )}
       {/* トレーニング追加画面表示ボタン */}
-      <OpenNewTrainingMenuFormButton onPress={() => navigation.navigate('NewTrainingMenuForm')} />
+      <OpenNewTrainingMenuFormButton
+        onPress={() =>
+          navigation.navigate('NewTrainingMenuForm', {
+            date: date,
+            trainingDicInSelectBox: trainingDicInSelectBox,
+          })
+        }
+      />
     </>
   );
 };
