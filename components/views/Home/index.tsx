@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 14,
   },
+  accordion: {
+    width: '100%',
+  },
 });
 LocaleConfig.locales.jp = {
   monthNames: [
@@ -88,7 +91,7 @@ const AccordionListItem: FC<Props> = ({
       <ListItem.Content>
         <ListItem.Accordion
           content={
-            <HStack space={4} justifyContent='space-around' alignItems='center'>
+            <HStack space={4} alignItems='center' width='90%'>
               <Avatar bg={color} size={6} borderRadius={4} />
               <VStack space={1} justifyContent='start'>
                 <ListItem.Title>{title}</ListItem.Title>
@@ -100,6 +103,7 @@ const AccordionListItem: FC<Props> = ({
           onPress={() => {
             setExpanded(!expanded);
           }}
+          style={styles.accordion}
         >
           <Text style={styles.itemText}>{content}</Text>
         </ListItem.Accordion>
