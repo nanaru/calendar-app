@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, getFirestore, getDoc, doc, deleteDoc } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  getDoc,
+  doc,
+  deleteDoc,
+  query,
+  orderBy,
+} from 'firebase/firestore';
 import { AgendaSchedule } from 'constants/AgendaSchedule';
 import { AgendaEntry } from 'constants/AgendaEntry';
 import { TrainingMenu } from 'constants/TrainingMenu';
@@ -64,7 +73,8 @@ const useHooks = () => {
         firestore,
         `/users/${currentUser.uid}/training_histories/${formatedDay}/menus`,
       );
-      const snapshot = await getDocs(coll);
+      const q = query(coll, orderBy('sort_at'));
+      const snapshot = await getDocs(q);
       let agendaEntries = new Array<AgendaEntry>();
       // トレーニングメニュー毎にループする
       for (let row = 0; row < snapshot.docs.length; row++) {

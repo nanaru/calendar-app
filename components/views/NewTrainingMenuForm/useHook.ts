@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { auth } from '../../../.env';
 import { setDefaulSetAndRepList } from 'constants/util';
 import { RootStackParamList } from 'constants/rootStackParamList';
-import { toHyphenDateFormat } from 'constants/util';
+import { toHyphenDateFormat, toNoSepDateFormat } from 'constants/util';
 
 const useHooks = () => {
   const navigation =
@@ -91,7 +91,7 @@ const useHooks = () => {
     await addDoc(coll, {
       menu_id: trainingMenu.menu_id,
       memo: trainingMenu.memo,
-      sort_at: trainingMenu.sort_at,
+      sort_at: toNoSepDateFormat(new Date()),
       set: resizedSets,
     });
     setIsValidQuery(false);
