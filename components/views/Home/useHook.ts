@@ -36,7 +36,8 @@ const useHooks = () => {
   const fetchTrainingMenuKinds = async () => {
     const firestore = getFirestore();
     const coll = collection(firestore, '/training_menu_dictionaries');
-    const snapshot = await getDocs(coll);
+    const q = query(coll, orderBy('name'));
+    const snapshot = await getDocs(q);
 
     for (let row = 0; row < snapshot.docs.length; row++) {
       const trainingMenuDoc = snapshot.docs[row];
