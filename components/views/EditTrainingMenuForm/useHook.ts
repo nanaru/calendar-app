@@ -79,7 +79,6 @@ const useHooks = () => {
     // 種目
     if (trainingMenu.menu_id === '') {
       setErrors({ ...errors, menu_id: '種目を選択してください' });
-      console.log('種目を選択してください');
       return false;
     }
     // セット数

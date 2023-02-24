@@ -25,8 +25,7 @@ const useHooks = () => {
   // SignUp処理
   const handleRegister = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(auth(), email, password);
-      console.log(user);
+      await createUserWithEmailAndPassword(auth(), email, password);
       navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (e: unknown) {
       if (e instanceof Error) {
