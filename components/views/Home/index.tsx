@@ -10,6 +10,7 @@ import OpenNewTrainingMenuFormButton from 'components/parts/OpenNewTrainingMenuF
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
+import { ScrollView } from 'react-native-gesture-handler';
 import useHooks from './useHook';
 
 export type Props = {
@@ -133,21 +134,23 @@ const Home = () => {
           // NOTE: items,renderItemで任意のプロパティを渡せないためエラーが出るが無視する
           items={agendaSchedule}
           renderItem={(item: AgendaEntry, isFirst) => (
-            <TouchableOpacity style={styles.item}>
-              <AccordionListItem
-                color={item.color}
-                title={item.title}
-                subTitle={item.subTitle}
-                content={item.content}
-                editTrainingMenuButtonOnPress={() =>
-                  navigation.navigate('EditTrainingMenuForm', {
-                    agenda: item,
-                    trainingDicInSelectBox: trainingDicInSelectBox,
-                  })
-                }
-                deleteTrainingMenuButtonOnPress={() => deleteTrainingMenu(item.date, item.docId)}
-              />
-            </TouchableOpacity>
+            <ScrollView removeClippedSubviews>
+              <TouchableOpacity style={styles.item}>
+                <AccordionListItem
+                  color={item.color}
+                  title={item.title}
+                  subTitle={item.subTitle}
+                  content={item.content}
+                  editTrainingMenuButtonOnPress={() =>
+                    navigation.navigate('EditTrainingMenuForm', {
+                      agenda: item,
+                      trainingDicInSelectBox: trainingDicInSelectBox,
+                    })
+                  }
+                  deleteTrainingMenuButtonOnPress={() => deleteTrainingMenu(item.date, item.docId)}
+                />
+              </TouchableOpacity>
+            </ScrollView>
           )}
           selected={date}
           refreshing={true}
