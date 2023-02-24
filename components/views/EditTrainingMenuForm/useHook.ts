@@ -24,6 +24,7 @@ const useHooks = () => {
     ),
   });
   const [isValidQuery, setIsValidQuery] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // 種目の選択
   const handleChangeInTrainingMenu = (inputValue: string) => {
@@ -69,8 +70,38 @@ const useHooks = () => {
     setTrainingMenu((trainingMenu) => ({ ...trainingMenu, memo: inputValue }));
   };
 
+  const validation = (): boolean => {
+    // 日付
+    if (date === '') {
+      setErrors({ ...errors, date: '日付を選択してください' });
+      return false;
+    }
+    // 種目
+    if (trainingMenu.menu_id === '') {
+      setErrors({ ...errors, menu_id: '種目を選択してください' });
+      console.log('種目を選択してください');
+      return false;
+    }
+    // セット数
+    if (trainingMenu.set.filter((item) => item.reps > 0 || item.weight > 0).length === 0) {
+      setErrors({ ...errors, set: '1セット以上入力してください' });
+      return false;
+    }
+    // メモ
+    if (trainingMenu.memo.length > 140) {
+      setErrors({ ...errors, memo: '140文字以内で入力してください' });
+      return false;
+    }
+    return true;
+  };
+
   // 保存処理
   const save = async () => {
+    // バリデーション処理
+    if (!validation()) {
+      return;
+    }
+
     setIsValidQuery(true);
     const currentUser = auth().currentUser;
     if (currentUser === null) {
@@ -101,6 +132,7 @@ const useHooks = () => {
     isValidQuery,
     trainingMenu,
     trainingDicInSelectBox,
+    errors,
     handleChangeInTrainingMenu,
     handleInputInWeight,
     handleInputInRep,

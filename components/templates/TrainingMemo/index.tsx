@@ -4,10 +4,11 @@ import { FormControl, TextArea } from 'native-base';
 
 export type Props = {
   memo: string;
+  errors: object;
   handleInputInTrainingMemo: (itemValue: string) => void;
 };
 
-const TrainingMemo: FC<Props> = ({ memo, handleInputInTrainingMemo }) => {
+const TrainingMemo: FC<Props> = ({ memo, errors, handleInputInTrainingMemo }) => {
   const styles = StyleSheet.create({
     input: {
       borderColor: 'gray',
@@ -23,8 +24,8 @@ const TrainingMemo: FC<Props> = ({ memo, handleInputInTrainingMemo }) => {
     },
   });
   return (
-    <FormControl style={styles.background}>
-      <FormControl.Label>■ メモ</FormControl.Label>
+    <FormControl style={styles.background} isInvalid={'memo' in errors}>
+      <FormControl.Label>■ メモ（任意:140文字以内）</FormControl.Label>
       <TextArea
         autoCompleteType={undefined}
         h={20}
@@ -35,6 +36,11 @@ const TrainingMemo: FC<Props> = ({ memo, handleInputInTrainingMemo }) => {
         }}
         value={memo}
       />
+      {'memo' in errors ? (
+        <FormControl.ErrorMessage>{errors.memo}</FormControl.ErrorMessage>
+      ) : (
+        <></>
+      )}
     </FormControl>
   );
 };

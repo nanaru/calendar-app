@@ -15,6 +15,7 @@ const NewTrainingMenuForm = () => {
     isValidQuery,
     trainingMenu,
     trainingDicInSelectBox,
+    errors,
     handleChangeInTrainingDate,
     handleChangeInTrainingMenu,
     handleInputInWeight,
@@ -34,6 +35,7 @@ const NewTrainingMenuForm = () => {
             <TrainingDate
               date={date}
               disabled={false}
+              errors={errors}
               handleChangeInDate={handleChangeInTrainingDate}
             />
           </Box>
@@ -41,6 +43,7 @@ const NewTrainingMenuForm = () => {
             {/* 種目名 */}
             <TrainingMenu
               trainingDicInSelectBox={trainingDicInSelectBox}
+              errors={errors}
               handleChangeInTrainingMenu={handleChangeInTrainingMenu}
             />
           </Box>
@@ -48,6 +51,7 @@ const NewTrainingMenuForm = () => {
             {/* 記録 */}
             <TrainingSetAndRepList
               sets={trainingMenu.set}
+              errors={errors}
               handleInputInWeight={handleInputInWeight}
               handleInputInRep={handleInputInRep}
             />
@@ -56,6 +60,7 @@ const NewTrainingMenuForm = () => {
             {/* メモ */}
             <TrainingMemo
               memo={trainingMenu.memo}
+              errors={errors}
               handleInputInTrainingMemo={handleInputInTrainingMemo}
             />
           </Box>

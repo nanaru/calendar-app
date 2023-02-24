@@ -6,10 +6,11 @@ import DatePicker from '@react-native-community/datetimepicker';
 export type Props = {
   date: string;
   disabled: boolean;
+  errors: object;
   handleChangeInDate?: (inputValue: Date) => void;
 };
 
-const TrainingDate: FC<Props> = ({ date, disabled, handleChangeInDate }) => {
+const TrainingDate: FC<Props> = ({ date, disabled, errors, handleChangeInDate }) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -25,7 +26,7 @@ const TrainingDate: FC<Props> = ({ date, disabled, handleChangeInDate }) => {
   });
 
   return (
-    <FormControl style={styles.background}>
+    <FormControl style={styles.background} isInvalid={'date' in errors}>
       <FormControl.Label>■ 日付</FormControl.Label>
       <DatePicker
         value={new Date(date)}
@@ -43,6 +44,11 @@ const TrainingDate: FC<Props> = ({ date, disabled, handleChangeInDate }) => {
         }}
         style={styles.container}
       />
+      {'date' in errors ? (
+        <FormControl.ErrorMessage>{errors.date}</FormControl.ErrorMessage>
+      ) : (
+        <></>
+      )}
     </FormControl>
   );
 };

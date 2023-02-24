@@ -7,11 +7,17 @@ import { Set } from 'constants/Set';
 
 export type Props = {
   sets: Set[];
+  errors: object;
   handleInputInWeight: (inputValue: number, key: number) => void;
   handleInputInRep: (inputValue: number, key: number) => void;
 };
 
-const TrainingSetAndRepList: FC<Props> = ({ sets, handleInputInWeight, handleInputInRep }) => {
+const TrainingSetAndRepList: FC<Props> = ({
+  sets,
+  errors,
+  handleInputInWeight,
+  handleInputInRep,
+}) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -47,9 +53,10 @@ const TrainingSetAndRepList: FC<Props> = ({ sets, handleInputInWeight, handleInp
     return list;
   };
   return (
-    <FormControl style={styles.background}>
+    <FormControl style={styles.background} isInvalid={'set' in errors}>
       <FormControl.Label>■ 記録</FormControl.Label>
       {TrainingSetAndRepItemList()}
+      {'set' in errors ? <FormControl.ErrorMessage>{errors.set}</FormControl.ErrorMessage> : <></>}
     </FormControl>
   );
 };

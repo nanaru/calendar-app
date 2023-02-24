@@ -5,12 +5,14 @@ import { TrainingMenuKindsInSelectBox } from 'constants/TrainingMenuKind';
 
 export type Props = {
   selectedItem?: string;
+  errors: object;
   trainingDicInSelectBox: TrainingMenuKindsInSelectBox[];
   handleChangeInTrainingMenu: (itemValue: string) => void;
 };
 
 const TrainingMenu: FC<Props> = ({
   selectedItem,
+  errors,
   trainingDicInSelectBox,
   handleChangeInTrainingMenu,
 }) => {
@@ -34,7 +36,7 @@ const TrainingMenu: FC<Props> = ({
   });
 
   return (
-    <FormControl style={styles.background} isRequired={true}>
+    <FormControl style={styles.background} isInvalid={'menu_id' in errors}>
       <FormControl.Label>■ 種目名</FormControl.Label>
       <Select
         accessibilityLabel='Choose Service'
@@ -51,6 +53,11 @@ const TrainingMenu: FC<Props> = ({
           return <Select.Item key={key} label={dic.trainingMenuKind.name} value={dic.docId} />;
         })}
       </Select>
+      {'menu_id' in errors ? (
+        <FormControl.ErrorMessage>{errors.menu_id}</FormControl.ErrorMessage>
+      ) : (
+        <></>
+      )}
     </FormControl>
   );
 };
