@@ -33,7 +33,7 @@ const NewTrainingMenuForm = () => {
           <Box mt='4' w='100%'>
             {/* 日付 */}
             <TrainingDate
-              date={date}
+              defaultDate={date}
               disabled={false}
               errors={errors}
               handleChangeInDate={handleChangeInTrainingDate}

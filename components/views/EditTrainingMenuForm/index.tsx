@@ -31,7 +31,7 @@ const EditTrainingMenuForm = () => {
         <Center w='100%'>
           <Box mt='4' w='100%'>
             {/* 日付 */}
-            <TrainingDate date={date} disabled={true} errors={errors} />
+            <TrainingDate defaultDate={date} disabled={true} errors={errors} />
           </Box>
           <Box mt='4' w='100%'>
             {/* 種目名 */}
