@@ -31,7 +31,7 @@ const TrainingSetAndRepItemInput: FC<Props> = ({
   });
 
   return (
-    <Stack alignItems='left'>
+    <Stack alignItems='flex-start'>
       <InputGroup
         w={{
           base: '70%',

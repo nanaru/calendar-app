@@ -94,7 +94,7 @@ const AccordionListItem: FC<Props> = ({
           content={
             <HStack space={4} alignItems='center' width='90%'>
               <Avatar bg={color} size={6} borderRadius={4} />
-              <VStack space={1} justifyContent='start'>
+              <VStack space={1} justifyContent='flex-start'>
                 <ListItem.Title>{title}</ListItem.Title>
                 <ListItem.Subtitle style={styles.subTitle}>{subTitle}</ListItem.Subtitle>
               </VStack>
