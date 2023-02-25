@@ -39,10 +39,6 @@ const TrainingMenu: FC<Props> = ({
     <FormControl style={styles.background} isInvalid={'menu_id' in errors}>
       <FormControl.Label>■ 種目名</FormControl.Label>
       <Select
-        accessibilityLabel='Choose Service'
-        _selectedItem={{
-          endIcon: <CheckIcon size='5' color='rose.400' />,
-        }}
         selectedValue={selectedItem}
         onValueChange={(itemValue) => handleChangeInTrainingMenu(itemValue)}
         variant='unstyled'
