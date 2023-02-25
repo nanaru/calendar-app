@@ -55,6 +55,7 @@ const SignIn = () => {
                 handleChangeInEmail(value);
               }}
               value={email}
+              keyboardType='email-address'
             />
           </FormControl>
           <FormControl>
