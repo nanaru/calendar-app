@@ -27,28 +27,7 @@ const SignUp = () => {
   return (
     <Center w='100%'>
       <Box safeArea p='2' w='90%' maxW='290' py='6'>
-        <Heading
-          size='lg'
-          color='coolGray.800'
-          _dark={{
-            color: 'warmGray.50',
-          }}
-          fontWeight='semibold'
-        >
-          筋トレカレンダー
-        </Heading>
-        <Heading
-          mt='1'
-          color='coolGray.600'
-          _dark={{
-            color: 'warmGray.200',
-          }}
-          fontWeight='medium'
-          size='xs'
-        >
-          Sign up to continue!
-        </Heading>
-        <VStack space={3} mt='5'>
+        <VStack space={3}>
           <FormControl>
             <FormControl.Label>メールアドレス</FormControl.Label>
             <Input
@@ -68,7 +47,7 @@ const SignUp = () => {
               value={password}
             />
           </FormControl>
-          <Button mt='2' bg='rose.400' onPress={handleRegister}>
+          <Button mt='6' bg='#33B7D3' onPress={handleRegister}>
             Sign up
           </Button>
           <HStack mt='6' justifyContent='center'>

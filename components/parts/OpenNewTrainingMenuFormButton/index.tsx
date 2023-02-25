@@ -11,7 +11,7 @@ const OpenNewTrainingMenuFormButton: FC<Props> = ({ onPress }) => {
   return (
     <Fab
       renderInPortal={false}
-      bg='rose.400'
+      bg='#33B7D3'
       shadow={8}
       right={30}
       bottom={30}
