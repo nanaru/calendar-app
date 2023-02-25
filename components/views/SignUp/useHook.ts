@@ -10,7 +10,8 @@ const useHooks = () => {
   const [email, setEmail] = useState('');
   // パスワード入力用
   const [password, setPassword] = useState('');
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'SignIn'>>();
+  const [isValidQuery, setIsValidQuery] = useState(false);
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'SignUp'>>();
 
   // メールアドレス入力
   const handleChangeInEmail = (inputValue: string) => {
@@ -25,12 +26,15 @@ const useHooks = () => {
   // SignUp処理
   const handleRegister = async () => {
     try {
+      setIsValidQuery(true);
       await createUserWithEmailAndPassword(auth(), email, password);
       navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.error(e.message);
       }
+    } finally {
+      setIsValidQuery(false);
     }
   };
 
@@ -42,6 +46,7 @@ const useHooks = () => {
   return {
     email,
     password,
+    isValidQuery,
     handleRegister,
     handleChangeInEmail,
     handleChangeInPassword,

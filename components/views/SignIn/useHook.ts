@@ -10,6 +10,7 @@ const useHooks = () => {
   const [email, setEmail] = useState('');
   // パスワード入力用
   const [password, setPassword] = useState('');
+  const [isValidQuery, setIsValidQuery] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth(), (user) => {
@@ -32,12 +33,15 @@ const useHooks = () => {
   // SignIn処理
   const handleSignIn = async () => {
     try {
+      setIsValidQuery(true);
       const user = await signInWithEmailAndPassword(auth(), email, password);
       navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.error(e.message);
       }
+    } finally {
+      setIsValidQuery(false);
     }
   };
 
@@ -49,6 +53,7 @@ const useHooks = () => {
   return {
     email,
     password,
+    isValidQuery,
     handleSignIn,
     handleChangeInEmail,
     handleChangeInPassword,
