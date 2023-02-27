@@ -59,7 +59,7 @@ const SignUp = () => {
                   fontWeight: 'medium',
                   fontSize: 'sm',
                 }}
-                onPress={handleLinkToSignIn}
+                onPress={() => handleLinkToSignIn()}
               >
                 こちら
               </Link>

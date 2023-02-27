@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { EmailAuthProvider, linkWithCredential } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
@@ -27,7 +27,15 @@ const useHooks = () => {
   const handleRegister = async () => {
     try {
       setIsValidQuery(true);
-      await createUserWithEmailAndPassword(auth(), email, password);
+      const currentUser = auth().currentUser;
+      if (currentUser === null) {
+        setIsValidQuery(false);
+        return;
+      }
+
+      // 匿名ユーザと紐付け
+      const credential = EmailAuthProvider.credential(email, password);
+      await linkWithCredential(currentUser, credential);
       navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -40,7 +48,7 @@ const useHooks = () => {
 
   // ログイン画面への遷移
   const handleLinkToSignIn = () => {
-    navigation.reset({ index: 0, routes: [{ name: 'SignIn' }] });
+    navigation.navigate('SignIn');
   };
 
   return {

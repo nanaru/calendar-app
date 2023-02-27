@@ -10,10 +10,13 @@ import NewTrainingMenuFormScreen from 'screens/NewTrainingMenuFormScreen';
 import EditTrainingMenuFormScreen from 'screens/EditTrainingMenuFormScreen';
 import { RootStackParamList } from 'constants/rootStackParamList';
 import { initializeFirebase } from '../../.env';
+import HeaderRight from 'components/templates/HeaderRight';
+import useHooks from './useHook';
 
 initializeFirebase();
 
 const Layout = () => {
+  const { isAnonymous } = useHooks();
   const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
@@ -22,7 +25,7 @@ const Layout = () => {
         {/* ルーティング */}
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName='SignIn'
+            initialRouteName='Home'
             screenOptions={{
               headerStyle: {
                 backgroundColor: '#33B7D3',
@@ -31,17 +34,18 @@ const Layout = () => {
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
+              headerRight: () => <HeaderRight isAnonymous={isAnonymous} />,
             }}
           >
             <Stack.Screen
               name='SignIn'
               component={SignInScreen}
-              options={{ headerTitle: 'ログイン' }}
+              options={{ headerTitle: 'ログイン', headerRight: () => undefined }}
             />
             <Stack.Screen
               name='SignUp'
               component={SignUpScreen}
-              options={{ headerTitle: '新規登録' }}
+              options={{ headerTitle: '新規登録', headerRight: () => undefined }}
             />
             <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: 'ホーム' }} />
             <Stack.Screen
