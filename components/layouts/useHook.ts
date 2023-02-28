@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
-import { auth } from '../../.env';
+import { auth } from 'src/.env';
 
 const useHooks = () => {
   const [isAnonymous, setIsAnonymous] = useState(false);

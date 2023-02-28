@@ -9,7 +9,7 @@ import SignUpScreen from 'screens/SignUpScreen';
 import NewTrainingMenuFormScreen from 'screens/NewTrainingMenuFormScreen';
 import EditTrainingMenuFormScreen from 'screens/EditTrainingMenuFormScreen';
 import { RootStackParamList } from 'constants/rootStackParamList';
-import { initializeFirebase } from '../../.env';
+import { initializeFirebase } from 'src/.env';
 import HeaderRight from 'components/templates/HeaderRight';
 import useHooks from './useHook';
 

@@ -6,7 +6,8 @@
     "paths": {
       "components*": ["components*"],
       "screens*": ["screens*"],
-      "constants*": ["constants*"]
+      "constants*": ["constants*"],
+      "src*": ["./*"]
     }
   }
 }

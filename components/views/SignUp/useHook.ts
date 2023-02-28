@@ -3,7 +3,7 @@ import { EmailAuthProvider, linkWithCredential } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
-import { auth } from '../../../.env';
+import { auth } from 'src/.env';
 
 const useHooks = () => {
   // メールアドレス入力用

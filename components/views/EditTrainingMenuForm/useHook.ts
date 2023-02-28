@@ -4,7 +4,7 @@ import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { TrainingMenu } from 'constants/TrainingMenu';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { auth } from '../../../.env';
+import { auth } from 'src/.env';
 import { setDefaulSetAndRepList } from 'constants/util';
 import { RootStackParamList } from 'constants/rootStackParamList';
 

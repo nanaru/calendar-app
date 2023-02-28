@@ -16,7 +16,7 @@ import { TrainingMenuKind, TrainingMenuKindsInSelectBox } from 'constants/Traini
 import { Set } from 'constants/Set';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from 'constants/rootStackParamList';
-import { auth } from '../../../.env';
+import { auth } from 'src/.env';
 import { RmKind, RmPoint } from 'constants/RmKind';
 import { toHyphenDateFormat } from 'constants/util';
 

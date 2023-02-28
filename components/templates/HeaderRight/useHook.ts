@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../../.env';
+import { auth } from 'src/.env';
 
 const useHooks = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
