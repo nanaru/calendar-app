@@ -19,6 +19,7 @@ import { RootStackParamList } from 'constants/rootStackParamList';
 import { auth } from 'src/.env';
 import { RmKind, RmPoint } from 'constants/RmKind';
 import { toHyphenDateFormat } from 'constants/util';
+import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 
 const useHooks = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'Home'>>();
@@ -169,6 +170,7 @@ const useHooks = () => {
   };
   useEffect(() => {
     (async () => {
+      await requestTrackingPermissionsAsync();
       await fetchTrainingMenuKinds();
       setIsValidQuery(true);
     })();

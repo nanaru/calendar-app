@@ -2,7 +2,7 @@
   "expo": {
     "name": "Trenoo",
     "slug": "Trenoo",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,13 +14,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "jp.work.trenoo",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.1",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "「許可」することで表示される広告がユーザーに最適化された内容になります。"
+      }
     },
     "android": {
       "package": "jp.work.trenoo",
@@ -38,6 +39,7 @@
       "eas": {
         "projectId": "6e970a43-c975-4905-a355-be22f3831cd2"
       }
-    }
+    },
+    "plugins": ["expo-tracking-transparency"]
   }
 }
