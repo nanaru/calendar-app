@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'constants/rootStackParamList';
-import { signOut } from 'firebase/auth';
+import { signOut, deleteUser } from 'firebase/auth';
 import { auth } from 'src/.env';
 
 const useHooks = () => {
@@ -26,7 +27,36 @@ const useHooks = () => {
       }
     }
   };
-  return { handleToSignUp, handleSignOut };
+
+  const onPressAlert = () => {
+    Alert.alert('アカウントの削除', 'アカウントの削除を行います。よろしいですか。', [
+      { text: 'はい', onPress: () => handleDeleteAuth() },
+      {
+        text: 'いいえ',
+        style: 'cancel',
+      },
+    ]);
+  };
+
+  const handleDeleteAuth = () => {
+    try {
+      const currentUser = auth().currentUser;
+
+      if (currentUser === null) {
+        return;
+      }
+      // ユーザーをサインアウト
+      deleteUser(currentUser).then(() => {
+        // サインアウト後サインアップ画面に遷移
+        navigation.replace('SignUp');
+      });
+    } catch (e) {
+      if (e instanceof Error) {
+        console.log(e.message);
+      }
+    }
+  };
+  return { handleToSignUp, handleSignOut, onPressAlert };
 };
 
 export default useHooks;

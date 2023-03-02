@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Menu, Pressable } from 'native-base';
 import { Avatar } from '@rneui/themed';
 import useHooks from './useHook';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 const HeaderRight: FC<Props> = ({ isAnonymous }) => {
-  const { handleToSignUp, handleSignOut } = useHooks();
+  const { handleToSignUp, handleSignOut, onPressAlert } = useHooks();
 
   return (
     <View style={styles.iconContainer}>
@@ -38,7 +38,14 @@ const HeaderRight: FC<Props> = ({ isAnonymous }) => {
         {isAnonymous ? (
           <Menu.Item onPress={() => handleToSignUp()}>アカウント登録</Menu.Item>
         ) : (
-          <Menu.Item onPress={() => handleSignOut()}>ログアウト</Menu.Item>
+          <>
+            <Menu.Item onPress={() => handleSignOut()}>
+              <Text>ログアウト</Text>
+            </Menu.Item>
+            <Menu.Item onPress={() => onPressAlert()}>
+              <Text style={{ color: 'red' }}>アカウント削除</Text>
+            </Menu.Item>
+          </>
         )}
       </Menu>
     </View>
