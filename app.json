@@ -2,7 +2,7 @@
   "expo": {
     "name": "Trenoo",
     "slug": "Trenoo",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "jp.work.trenoo",
-      "buildNumber": "1.0.1",
+      "buildNumber": "1.0.2",
       "infoPlist": {
         "NSUserTrackingUsageDescription": "「許可」することで表示される広告がユーザーに最適化された内容になります。"
       }
